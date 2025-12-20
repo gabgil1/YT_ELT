@@ -1,0 +1,59 @@
+[2025-12-16T04:15:24.176+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2025-12-16T04:15:24.205+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: update_db.core_table manual__2025-12-16T04:15:17.450641+00:00 [queued]>
+[2025-12-16T04:15:24.217+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: update_db.core_table manual__2025-12-16T04:15:17.450641+00:00 [queued]>
+[2025-12-16T04:15:24.218+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2025-12-16T04:15:24.238+0000] {taskinstance.py:2330} INFO - Executing <Task(_PythonDecoratedOperator): core_table> on 2025-12-16 04:15:17.450641+00:00
+[2025-12-16T04:15:24.245+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=409) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-12-16T04:15:24.248+0000] {standard_task_runner.py:63} INFO - Started process 410 to run task
+[2025-12-16T04:15:24.248+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'update_db', 'core_table', 'manual__2025-12-16T04:15:17.450641+00:00', '--job-id', '123', '--raw', '--subdir', 'DAGS_FOLDER/main.py', '--cfg-path', '/tmp/tmp5jdq7q6k']
+[2025-12-16T04:15:24.250+0000] {standard_task_runner.py:91} INFO - Job 123: Subtask core_table
+[2025-12-16T04:15:24.336+0000] {task_command.py:426} INFO - Running <TaskInstance: update_db.core_table manual__2025-12-16T04:15:17.450641+00:00 [running]> on host 58cdcf494984
+[2025-12-16T04:15:24.453+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_EMAIL='data@engineers.com' AIRFLOW_CTX_DAG_OWNER='dataengineers' AIRFLOW_CTX_DAG_ID='update_db' AIRFLOW_CTX_TASK_ID='core_table' AIRFLOW_CTX_EXECUTION_DATE='2025-12-16T04:15:17.450641+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-12-16T04:15:17.450641+00:00'
+[2025-12-16T04:15:24.455+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2025-12-16T04:15:24.467+0000] {base.py:84} INFO - Using connection ID 'postgres_db_yt_elt' for task execution.
+[2025-12-16T04:15:24.474+0000] {base.py:84} INFO - Using connection ID 'postgres_db_yt_elt' for task execution.
+[2025-12-16T04:15:24.486+0000] {base.py:84} INFO - Using connection ID 'postgres_db_yt_elt' for task execution.
+[2025-12-16T04:15:24.536+0000] {dwh.py:89} ERROR - An error occurred during the update of core table: 'secondDays' is an invalid keyword argument for __new__()
+[2025-12-16T04:15:24.537+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2025-12-16T04:15:24.540+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/decorators/base.py", line 265, in execute
+    return_value = super().execute(context)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/datawarehouse/dwh.py", line 90, in core_table
+    raise e
+  File "/opt/airflow/dags/datawarehouse/dwh.py", line 71, in core_table
+    transformed_row = transform_data(row)
+                      ^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/datawarehouse/data_transformation.py", line 23, in transform_data
+    duration_td = parse_duration(row["Duration"])
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/datawarehouse/data_transformation.py", line 16, in parse_duration
+    total_duration = timedelta(
+                     ^^^^^^^^^^
+TypeError: 'secondDays' is an invalid keyword argument for __new__()
+[2025-12-16T04:15:24.573+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=update_db, task_id=core_table, run_id=manual__2025-12-16T04:15:17.450641+00:00, execution_date=20251216T041517, start_date=20251216T041524, end_date=20251216T041524
+[2025-12-16T04:15:24.588+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 123 for task core_table ('secondDays' is an invalid keyword argument for __new__(); 410)
+[2025-12-16T04:15:24.624+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2025-12-16T04:15:24.643+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-12-16T04:15:24.646+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

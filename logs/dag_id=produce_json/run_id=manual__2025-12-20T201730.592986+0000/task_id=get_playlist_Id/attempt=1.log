@@ -1,0 +1,17 @@
+[2025-12-20T20:17:34.912+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2025-12-20T20:17:34.948+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: produce_json.get_playlist_Id manual__2025-12-20T20:17:30.592986+00:00 [queued]>
+[2025-12-20T20:17:34.960+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: produce_json.get_playlist_Id manual__2025-12-20T20:17:30.592986+00:00 [queued]>
+[2025-12-20T20:17:34.962+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2025-12-20T20:17:34.978+0000] {taskinstance.py:2330} INFO - Executing <Task(_PythonDecoratedOperator): get_playlist_Id> on 2025-12-20 20:17:30.592986+00:00
+[2025-12-20T20:17:34.990+0000] {standard_task_runner.py:63} INFO - Started process 94 to run task
+[2025-12-20T20:17:34.995+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'produce_json', 'get_playlist_Id', 'manual__2025-12-20T20:17:30.592986+00:00', '--job-id', '65', '--raw', '--subdir', 'DAGS_FOLDER/main.py', '--cfg-path', '/tmp/tmpjv0u621q']
+[2025-12-20T20:17:34.998+0000] {standard_task_runner.py:91} INFO - Job 65: Subtask get_playlist_Id
+[2025-12-20T20:17:35.122+0000] {task_command.py:426} INFO - Running <TaskInstance: produce_json.get_playlist_Id manual__2025-12-20T20:17:30.592986+00:00 [running]> on host 87e0e81ae3ad
+[2025-12-20T20:17:35.281+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_EMAIL='data@engineers.com' AIRFLOW_CTX_DAG_OWNER='dataengineers' AIRFLOW_CTX_DAG_ID='produce_json' AIRFLOW_CTX_TASK_ID='get_playlist_Id' AIRFLOW_CTX_EXECUTION_DATE='2025-12-20T20:17:30.592986+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-12-20T20:17:30.592986+00:00'
+[2025-12-20T20:17:35.283+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2025-12-20T20:17:35.658+0000] {logging_mixin.py:188} INFO - Playlist ID: UUX6OQ3DkcsbYNE6H8uQQuVA
+[2025-12-20T20:17:35.662+0000] {python.py:237} INFO - Done. Returned value was: UUX6OQ3DkcsbYNE6H8uQQuVA
+[2025-12-20T20:17:35.664+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2025-12-20T20:17:35.704+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=produce_json, task_id=get_playlist_Id, run_id=manual__2025-12-20T20:17:30.592986+00:00, execution_date=20251220T201730, start_date=20251220T201734, end_date=20251220T201735
+[2025-12-20T20:17:35.771+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2025-12-20T20:17:35.787+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

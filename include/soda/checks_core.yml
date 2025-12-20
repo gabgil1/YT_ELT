@@ -1,0 +1,7 @@
+checks for yt_api:
+  - missing_count("Video_ID") = 0
+  - duplicate_count("Video_ID") = 0
+
+checks for yt_api_invalid_metrics:
+  - row_count = 0
+ 

@@ -1,0 +1,53 @@
+[2025-12-20T18:35:08.254+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2025-12-20T18:35:08.321+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: update_db.staging_table scheduled__2025-12-19T15:00:00+00:00 [queued]>
+[2025-12-20T18:35:08.333+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: update_db.staging_table scheduled__2025-12-19T15:00:00+00:00 [queued]>
+[2025-12-20T18:35:08.334+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2025-12-20T18:35:08.348+0000] {taskinstance.py:2330} INFO - Executing <Task(_PythonDecoratedOperator): staging_table> on 2025-12-19 15:00:00+00:00
+[2025-12-20T18:35:08.355+0000] {standard_task_runner.py:63} INFO - Started process 2212 to run task
+[2025-12-20T18:35:08.359+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'update_db', 'staging_table', 'scheduled__2025-12-19T15:00:00+00:00', '--job-id', '53', '--raw', '--subdir', 'DAGS_FOLDER/main.py', '--cfg-path', '/tmp/tmpd0nngzvf']
+[2025-12-20T18:35:08.361+0000] {standard_task_runner.py:91} INFO - Job 53: Subtask staging_table
+[2025-12-20T18:35:08.437+0000] {task_command.py:426} INFO - Running <TaskInstance: update_db.staging_table scheduled__2025-12-19T15:00:00+00:00 [running]> on host 2095eb49e620
+[2025-12-20T18:35:08.536+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_EMAIL='data@engineers.com' AIRFLOW_CTX_DAG_OWNER='dataengineers' AIRFLOW_CTX_DAG_ID='update_db' AIRFLOW_CTX_TASK_ID='staging_table' AIRFLOW_CTX_EXECUTION_DATE='2025-12-19T15:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-12-19T15:00:00+00:00'
+[2025-12-20T18:35:08.537+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2025-12-20T18:35:08.687+0000] {base.py:84} INFO - Using connection ID 'postgres_db_yt_elt' for task execution.
+[2025-12-20T18:35:08.697+0000] {data_loading.py:11} INFO - Processing file: YT_data_2025-12-20
+[2025-12-20T18:35:08.699+0000] {data_loading.py:40} ERROR - File not found: /opt/***/data/YT_data_2025-12-20.json
+[2025-12-20T18:35:08.700+0000] {dwh.py:43} ERROR - An error occurred during the update of staging table: [Errno 2] No such file or directory: '/opt/***/data/YT_data_2025-12-20.json'
+[2025-12-20T18:35:08.701+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2025-12-20T18:35:08.702+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/decorators/base.py", line 265, in execute
+    return_value = super().execute(context)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.11/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/datawarehouse/dwh.py", line 44, in staging_table
+    raise e
+  File "/opt/airflow/dags/datawarehouse/dwh.py", line 19, in staging_table
+    Yt_data = load_data()
+              ^^^^^^^^^^^
+  File "/opt/airflow/dags/datawarehouse/data_loading.py", line 13, in load_data
+    with open(file_path, 'r', encoding='utf-8') as raw_data:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/opt/airflow/data/YT_data_2025-12-20.json'
+[2025-12-20T18:35:08.735+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=update_db, task_id=staging_table, run_id=scheduled__2025-12-19T15:00:00+00:00, execution_date=20251219T150000, start_date=20251220T183508, end_date=20251220T183508
+[2025-12-20T18:35:08.750+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 53 for task staging_table ([Errno 2] No such file or directory: '/opt/airflow/data/YT_data_2025-12-20.json'; 2212)
+[2025-12-20T18:35:08.779+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2025-12-20T18:35:08.806+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-12-20T18:35:08.810+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

@@ -1,0 +1,21 @@
+[2025-12-16T01:56:47.482+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2025-12-16T01:56:47.513+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: produce_json.get_playlist_Id scheduled__2025-12-14T17:00:00+00:00 [queued]>
+[2025-12-16T01:56:47.521+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: produce_json.get_playlist_Id scheduled__2025-12-14T17:00:00+00:00 [queued]>
+[2025-12-16T01:56:47.522+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2025-12-16T01:56:47.537+0000] {taskinstance.py:2330} INFO - Executing <Task(_PythonDecoratedOperator): get_playlist_Id> on 2025-12-14 17:00:00+00:00
+[2025-12-16T01:56:47.543+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=58) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2025-12-16T01:56:47.545+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'produce_json', 'get_playlist_Id', 'scheduled__2025-12-14T17:00:00+00:00', '--job-id', '110', '--raw', '--subdir', 'DAGS_FOLDER/main.py', '--cfg-path', '/tmp/tmpwdwa6be4']
+[2025-12-16T01:56:47.546+0000] {standard_task_runner.py:63} INFO - Started process 59 to run task
+[2025-12-16T01:56:47.546+0000] {standard_task_runner.py:91} INFO - Job 110: Subtask get_playlist_Id
+[2025-12-16T01:56:47.632+0000] {task_command.py:426} INFO - Running <TaskInstance: produce_json.get_playlist_Id scheduled__2025-12-14T17:00:00+00:00 [running]> on host 58cdcf494984
+[2025-12-16T01:56:47.737+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_EMAIL='data@engineers.com' AIRFLOW_CTX_DAG_OWNER='dataengineers' AIRFLOW_CTX_DAG_ID='produce_json' AIRFLOW_CTX_TASK_ID='get_playlist_Id' AIRFLOW_CTX_EXECUTION_DATE='2025-12-14T17:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-12-14T17:00:00+00:00'
+[2025-12-16T01:56:47.739+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2025-12-16T01:56:48.025+0000] {logging_mixin.py:188} INFO - Playlist ID: UUX6OQ3DkcsbYNE6H8uQQuVA
+[2025-12-16T01:56:48.030+0000] {python.py:237} INFO - Done. Returned value was: UUX6OQ3DkcsbYNE6H8uQQuVA
+[2025-12-16T01:56:48.032+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2025-12-16T01:56:48.071+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=produce_json, task_id=get_playlist_Id, run_id=scheduled__2025-12-14T17:00:00+00:00, execution_date=20251214T170000, start_date=20251216T015647, end_date=20251216T015648
+[2025-12-16T01:56:48.131+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2025-12-16T01:56:48.170+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-12-16T01:56:48.173+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
