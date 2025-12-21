@@ -192,8 +192,8 @@ services:
           echo
           echo -e "\033[1;33mWARNING!!!: AIRFLOW_UID not set!\e[0m"
         fi
-        mkdir -p /sources/dags /sources/data /sources/include /sources/logs /sources/tests
-        chown -R "${AIRFLOW_UID}:0" /sources/{dags,data,include,logs,tests}
+        mkdir -p /opt/airflow/dags /opt/airflow/data /opt/airflow/include /opt/airflow/logs /opt/airflow/tests
+        chown -R "${AIRFLOW_UID}:0" /opt/airflow/{dags,data,include,logs,tests}
         exec /entrypoint airflow version
     environment:
       <<: *airflow-common-env
@@ -203,7 +203,11 @@ services:
       _AIRFLOW_WWW_USER_PASSWORD: ${AIRFLOW_WWW_USER_PASSWORD}
     user: "0:0"
     volumes:
-      - .:/sources
+      - ./dags:/opt/airflow/dags
+      - ./data:/opt/airflow/data
+      - ./include:/opt/airflow/include
+      - ./logs:/opt/airflow/logs
+      - ./tests:/opt/airflow/tests
 
   airflow-cli:
     <<: *airflow-common
