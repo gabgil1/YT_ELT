@@ -74,6 +74,16 @@ jobs:
       - name: Run Unit and Integration Tests
         run: docker exec -t airflow-worker sh -c "pytest -v"
 
+      - name: Wait for DAGs to be loaded
+        run: |
+          DAG_NAMES=("produce_json" "update_db" "data_quality")
+          for DAG in "${DAG_NAMES[@]}"; do
+            until docker exec -t airflow-webserver airflow dags list | grep $DAG; do
+              echo "Esperando a que se cargue el DAG $DAG..."
+              sleep 5
+            done
+          done
+
       - name: Run End-to-End DAG Tests
         run: |
           DAG_NAMES=("produce_json" "update_db" "data_quality")
